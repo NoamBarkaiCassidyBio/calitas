@@ -80,6 +80,26 @@ class SequentialGuideAlignerTest extends UnitSpec {
     alns.head.paddedTarget shouldBe "GGTTGGTT"
   }
 
+  it should "correctly handle wildcards" in {
+    val query  =   "GGWT"
+    val target = "TTAGGWTGGGG"
+    val alns   = new SequentialGuideAligner().align(Guide(query), target.getBytes, maxGuideDiffs=0, maxPamDiffs=0, maxGapsBetweenGuideAndPam=0, maxTotalDiffs=0)
+
+    alns should have size 1
+    alns.head.strand      shouldBe '+'
+    alns.head.startOffset shouldBe 3
+  }
+
+  it should "correctly handle wildcards against reverse complements" in { 
+    val query  =   "GGWT"
+    val target = "TTTAWCCTGGGG"
+    val alns   = new SequentialGuideAligner().align(Guide(query), target.getBytes, maxGuideDiffs=0, maxPamDiffs=0, maxGapsBetweenGuideAndPam=0, maxTotalDiffs=0)
+
+    alns should have size 1
+    alns.head.strand      shouldBe '-'
+    alns.head.startOffset shouldBe 3
+  }
+
   it should "correctly describe an R strand alignment with a mismatch in it" in {
     val query  = "GGTTGGTT"
     val target = "AGCCAACC"

@@ -83,7 +83,7 @@ lazy val commons = Project(id="commons", base=file("commons"))
       "org.scalatest"       %% "scalatest"     % "3.1.3" % "test->*" excludeAll ExclusionRule(organization="org.junit", name="junit"),
       "com.fulcrumgenomics" %% "sopt"          % "1.1.0",
       "com.fulcrumgenomics" %% "commons"       % "1.4.0",
-      "com.fulcrumgenomics" %% "fgbio"         % "2.0.0" excludeAll(htsjdkAndPicardExcludes:_*),
+      "com.fulcrumgenomics" %% "fgbio"         % "2.2.0" excludeAll(htsjdkAndPicardExcludes:_*),
       "com.beachape"        %% "enumeratum"    % "1.7.0",
       "com.github.samtools"  % "htsjdk"        % "2.24.1" excludeAll(htsjdkAndPicardExcludes: _*)
       ),
